@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique(map: "username") @db.VarChar(255)
+  email     String   @unique(map: "email") @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relasi ke Task
+  tasks     Task[]   @relation("UserTasks")
+
+  @@map("users")
+}
+
+enum Priority {
+  Low
+  Medium
+  High
+}
+
+model Task {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(255)
+  status    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relasi ke User
+  authorId  Int
+  author    User     @relation("UserTasks", fields: [authorId], references: [id], onDelete: Cascade)
+
+// Kolom tambahan untuk menyimpan username
+  authorUsername String   @db.VarChar(255)
+
+   // Kolom priority dengan default "medium"
+  priority       Priority  @default(Low)
+
+  @@map("tasks")
+}
+
