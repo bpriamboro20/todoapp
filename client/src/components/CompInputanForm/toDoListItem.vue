@@ -178,21 +178,21 @@ onUpdated(() => {
     <button
       @click="setFilter('all')"
       :class="{ 'bg-cyan-700': activeFilter === 'all', 'bg-cyan-600': activeFilter !== 'all' }"
-      class="flex-1 hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-semibold rounded-md"
+      class="flex-1 text-md md:text-base hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-bold rounded-md"
     >
       Show all
     </button>
     <button
       @click="setFilter('done')"
       :class="{ 'bg-cyan-700': activeFilter === 'done', 'bg-cyan-600': activeFilter !== 'done' }"
-      class="flex-1 hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-bold rounded-md"
+      class="flex-1 text-md md:text-base hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-bold rounded-md"
     >
       Done only
     </button>
     <button
       @click="setFilter('undone')"
       :class="{ 'bg-cyan-700': activeFilter === 'undone', 'bg-cyan-600': activeFilter !== 'undone' }"
-      class="flex-1 hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-bold rounded-md"
+      class="flex-1 text-md md:text-base hover:bg-cyan-700 active:bg-cyan-900 py-1 sm:py-2 px-3 text-white font-bold rounded-md"
     >
       Undone only
     </button>
